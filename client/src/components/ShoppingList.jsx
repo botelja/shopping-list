@@ -1,17 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Button, ListGroup, ListGroupItem } from 'reactstrap';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { v4 as uuid } from 'uuid';
+import { connect } from 'react-redux';
+import { getItems } from '../actions/itemActions';
+import PropTypes from 'prop-types';
 
-const shoppingList = [
-  { id: uuid(), name: 'Milk' },
-  { id: uuid(), name: 'Eggs' },
-  { id: uuid(), name: 'Steak' },
-  { id: uuid(), name: 'Water' },
-];
+const ShoppingList = ({ item, getItems }) => {
+  const [items, setItems] = useState(item.items);
 
-const ShoppingList = () => {
-  const [items, setItems] = useState(shoppingList);
+  useEffect(() => {
+    getItems();
+  }, []);
+
+  console.log(items);
 
   const addItem = () => {
     const name = prompt('Enter Item');
@@ -51,4 +53,13 @@ const ShoppingList = () => {
   );
 };
 
-export default ShoppingList;
+ShoppingList.propTypes = {
+  getItems: PropTypes.func.isRequired,
+  item: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  item: state.item,
+});
+
+export default connect(mapStateToProps, { getItems })(ShoppingList);
