@@ -20,7 +20,7 @@ const AppNavbar = () => {
           ShoppingList
         </NavbarBrand>
         <NavbarToggler onClick={toggle} className="mr-2" />
-        <Collapse isOpen={!isOpen} navbar>
+        <Collapse isOpen={isOpen} navbar>
           <Nav navbar>
             <NavItem>
               <NavLink href="https://github.com/botelja/shopping-list">
