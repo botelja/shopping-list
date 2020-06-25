@@ -14,15 +14,15 @@ const ShoppingList = ({ item, getItems, deleteItem }) => {
     <>
       <ListGroup>
         <TransitionGroup className="shopping-list">
-          {item.items.map(({ id, name }) => (
-            <CSSTransition key={id} timeout={500} classNames="fade">
+          {item.items.map(({ _id, name }) => (
+            <CSSTransition key={_id} timeout={500} classNames="fade">
               <ListGroupItem>
                 {name}{' '}
                 <Button
                   className="remove-btn"
                   color="danger"
                   size="sm"
-                  onClick={() => deleteItem(id)}
+                  onClick={() => deleteItem(_id)}
                 >
                   &times;
                 </Button>

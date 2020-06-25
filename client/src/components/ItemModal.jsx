@@ -9,7 +9,6 @@ import {
   Label,
   Input,
 } from 'reactstrap';
-import { v4 as uuid } from 'uuid';
 import { connect } from 'react-redux';
 import { addItem } from '../actions/itemActions';
 
@@ -25,11 +24,12 @@ const ItemModal = ({ addItem }) => {
     e.preventDefault();
 
     const newItem = {
-      id: uuid(),
       name,
     };
 
     addItem(newItem);
+
+    setName('');
 
     toggle();
   };
